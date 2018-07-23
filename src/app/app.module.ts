@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { GroupsComponent } from './pages/groups/groups.component';
+import { RestService } from './services/rest.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { GroupsComponent } from './pages/groups/groups.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [RestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
