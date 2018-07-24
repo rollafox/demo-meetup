@@ -1,3 +1,12 @@
-<p>
-  groups works!
-</p>
+<!-- category lookup filter. -->
+<dvt-mu-category-lookup (selectedCategory)="addFilter($event)"></dvt-mu-category-lookup>
+
+<!-- Show current filters applied -->
+<ng-container *ngFor="let filter of selectedFilters">
+    <div>{{filter.name}}</div>
+</ng-container>
+
+<!-- Add group cards -->
+<ng-container *ngFor="let group of groups$ | async">
+  <dvt-mu-group-card [cardItem]="group"></dvt-mu-group-card>
+</ng-container>

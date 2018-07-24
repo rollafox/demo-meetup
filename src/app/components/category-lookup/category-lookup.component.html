@@ -1,0 +1,10 @@
+<form [formGroup]="categoryFilter">
+  <mat-form-field>
+    <input type="text" matInput [formControlName]="'filterBy'" [matAutocomplete]="categoryLookup">
+    <mat-autocomplete autoActiveFirstOption #categoryLookup="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let category of list$ | async" [value]="category">
+        {{category.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

@@ -1,27 +1,48 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SettingsComponent } from './pages/settings/settings.component';
 import { GroupsComponent } from './pages/groups/groups.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 import { RestService } from './services/rest.service';
+import { GroupCardComponent } from './components/group-card/group-card.component';
+import { CategoryService } from './services/category/category.service';
+import { GroupService } from './services/group/group.service';
+import { CacheService } from './services/cache/cache.service';
+import { CategoryLookupComponent } from './components/category-lookup/category-lookup.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SettingsComponent,
-    GroupsComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule
-  ],
-  providers: [RestService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SettingsComponent,
+        GroupsComponent,
+        GroupCardComponent,
+        CategoryLookupComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule
+    ],
+    providers: [
+        RestService,
+        CacheService,
+        CategoryService,
+        GroupService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

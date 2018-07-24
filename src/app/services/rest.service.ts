@@ -1,24 +1,31 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { RestConfigurationInterface, Configuration } from '../models/rest/configuration';
 
 @Injectable({
     providedIn: 'root'
 })
 export class RestService {
+    private httpOptions = {
+        headers: new HttpHeaders({
+            'Accept': 'application/json'
+        })
+    };
+    private configuration;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
-    getCategories() { // Just Assessing the API.
-        const httpOptions = {
-          headers: new HttpHeaders({
-              'Accept': 'application/json'
-          })
-        };
-        return this.http.get(
-            'https://cors-anywhere.herokuapp.com/https://api.meetup.com/2/categories?key=626f673d31706171155922224b3767',
-            httpOptions
-        );
+    setConfiguration(config: RestConfigurationInterface) {
+        this.configuration = new Configuration(config);
+    }
+
+    get(dir: string): any {
+        return this.http.get(this.configuration.getUrl(dir), this.httpOptions);
+    }
+
+    post() {
+
     }
 
 }
