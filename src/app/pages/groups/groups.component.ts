@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { GroupService } from '../../services/group/group.service';
+import { SettingsService } from '../../services/settings/settings.service';
 
 @Component({
     selector: 'dvt-mu-groups',
@@ -12,6 +13,7 @@ export class GroupsComponent implements OnInit {
     selectedFilters = [];
 
     constructor(private groupService: GroupService,
+        private settingsService: SettingsService,
         private formBuilder: FormBuilder) { }
 
     ngOnInit() {
@@ -26,7 +28,7 @@ export class GroupsComponent implements OnInit {
     }
 
     getPreSetPref() {
-        const pref = this.groupService.getPreference();
+        const pref = this.settingsService.getPreference();
         if (pref) {
             this.selectedFilters.push(pref);
         }

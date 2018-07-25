@@ -18,6 +18,7 @@ import { CategoryService } from './services/category/category.service';
 import { GroupService } from './services/group/group.service';
 import { CacheService } from './services/cache/cache.service';
 import { CategoryLookupComponent } from './components/category-lookup/category-lookup.component';
+import { SettingsService } from './services/settings/settings.service';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { CategoryLookupComponent } from './components/category-lookup/category-l
         RestService,
         CacheService,
         CategoryService,
-        GroupService
+        GroupService,
+        SettingsService
     ],
     bootstrap: [AppComponent]
 })

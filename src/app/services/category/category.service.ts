@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Category } from '../../models/category.model';
-import { MeetUpConfiguration } from '../../models/rest/meetup-configuration';
+import { MeetUpConfiguration, ApiEndPoint } from '../_configuration/meetup-configuration';
 import { MeetUpCategoryResponse } from '../../models/rest/meetup-responses.model';
 import { CacheService } from '../cache/cache.service';
 import { RestService } from '../rest.service';
@@ -20,11 +20,11 @@ export class CategoryService extends RestService {
     }
 
     getCategories(): Observable<Array<Category>> {
-        return this.get('2/categories').pipe(map((response: MeetUpCategoryResponse) => <Array<Category>>response.results));
-    }
-
-    selectPreference(category: Category) {
-        this.cacheService.setCache('category', category);
+        return this.get(
+            ApiEndPoint.GET.CATEGORIES
+        ).pipe(
+            map((response: MeetUpCategoryResponse) => <Array<Category>>response.results)
+        );
     }
 
 }

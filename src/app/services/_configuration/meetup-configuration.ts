@@ -6,3 +6,9 @@ export const MeetUpConfiguration: RestConfigurationInterface = {
     API_KEY: '?key=626f673d31706171155922224b3767'
 };
 
+export const ApiEndPoint = {
+    GET: {
+        CATEGORIES: '2/categories',
+        GROUPS: 'find/groups'
+    }
+};

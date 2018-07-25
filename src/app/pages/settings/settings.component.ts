@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category/category.service';
+import { SettingsService } from '../../services/settings/settings.service';
 
 @Component({
     selector: 'dvt-mu-settings',
@@ -16,6 +17,7 @@ export class SettingsComponent implements OnInit {
     categoryFilter: FormGroup;
 
     constructor(private categoryService: CategoryService,
+        private settingsService: SettingsService,
         private formBuilder: FormBuilder) { }
 
     ngOnInit() {
@@ -25,8 +27,8 @@ export class SettingsComponent implements OnInit {
         return category ? category.name : undefined;
     }
 
-    cacheIt(categorySelected) {
-        this.categoryService.selectPreference(categorySelected);
+    updatePreference(categorySelected) {
+        this.settingsService.setPreference(categorySelected);
     }
 
 }
