@@ -15,12 +15,21 @@ export class GroupsComponent implements OnInit {
         private formBuilder: FormBuilder) { }
 
     ngOnInit() {
-        this.selectedFilters.push(this.groupService.getPreference());
-        this.groups$ = this.groupService.findGroups(this.selectedFilters);
+        this.groups$ = this.groupService.findGroups(this.getPreSetPref());
     }
 
     addFilter(selected) {
-        this.selectedFilters.push(selected);
+        if (!this.selectedFilters.find(filtered => selected.id === filtered.id)) {
+            this.selectedFilters.push(selected);
+            this.groups$ = this.groupService.findGroups(this.selectedFilters); // TODO: add smarter filter
+        }
     }
 
+    getPreSetPref() {
+        const pref = this.groupService.getPreference();
+        if (pref) {
+            this.selectedFilters.push(pref);
+        }
+        return this.selectedFilters;
+    }
 }

@@ -4,8 +4,9 @@
 
 - ~~Assess `Meetup.com's` API.~~
 - Make `REST Interceptor`.
+- Improve API calls, and Filtering of Results
 - ~~Layout Foundation for `REST` Requests.~~
-- Re-factor Caching Service.
+- ~~Re-factor Caching Service.~~
 - Create General Conf/Util if required.
 
 ## Components/Layout

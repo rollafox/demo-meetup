@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RestConfigurationInterface, Configuration } from '../models/rest/configuration';
 
@@ -20,8 +20,8 @@ export class RestService {
         this.configuration = new Configuration(config);
     }
 
-    get(dir: string): any {
-        return this.http.get(this.configuration.getUrl(dir), this.httpOptions);
+    get(dir: string, params = {}): any {
+        return this.http.get(this.configuration.getUrl(dir), Object.assign(this.httpOptions, params));
     }
 
     post() {

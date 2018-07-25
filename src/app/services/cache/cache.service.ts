@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+
 import { Category } from '../../models/category.model';
-import { Observable, Subject } from 'rxjs';
 
 interface Cache<T> {
-    [key: string]: T;
+    [prefixedKey: string]: {[key: string]: T};
 }
 
 const DEFAULT_PREFIX = 'dvt-mu';
@@ -12,7 +12,7 @@ const DEFAULT_PREFIX = 'dvt-mu';
     providedIn: 'root'
 })
 export class CacheService {
-    cached: Cache<Category> = {};
+    cached: Cache<Category> = {[DEFAULT_PREFIX]: {}}; // TODO: use Generics to infer Type.
 
     constructor() {
         this.cached = this.getFromStorage();
@@ -37,7 +37,7 @@ export class CacheService {
         localStorage.setItem(prefix, JSON.stringify(this.cached));
     }
 
-    // TODO: improve error catching, maybe use Generics to infer Type on response.
+    // TODO: improve error catching
     getFromStorage(prefix = DEFAULT_PREFIX) {
         let storedPackage;
         try {

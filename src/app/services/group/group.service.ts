@@ -1,11 +1,12 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CacheService } from '../cache/cache.service';
-
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { Category } from '../../models/category.model';
 import { MeetUpConfiguration } from '../../models/rest/meetup-configuration';
 import { MeetUpGroupResponse } from '../../models/rest/meetup-responses.model';
+import { CacheService } from '../cache/cache.service';
 import { RestService } from '../rest.service';
 
 @Injectable({
@@ -22,10 +23,20 @@ export class GroupService extends RestService {
         return this.cacheService.getFromCache('category');
     }
 
-    findGroups(categoryFilters): Observable<any> {
-        // TODO: param builder i.e. category=3,5,7
+    buildParams(arr: Array<Category>) {
+        const commaSeparated = arr.reduce((acc, category) => {
+            return `${acc},${category.id}`;
+        }, ''),
+            params = new HttpParams({
+                fromObject: {
+                    category: commaSeparated
+                }
+            });
+        return params;
+    }
 
-        return this.get('find/groups').pipe(map((response: MeetUpGroupResponse) => response));
+    findGroups(categoryFilters): Observable<any> {
+        return this.get('find/groups', {params: this.buildParams(categoryFilters)}).pipe(map((response: MeetUpGroupResponse) => response));
     }
 
 }

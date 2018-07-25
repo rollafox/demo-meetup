@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -35,7 +36,8 @@ import { CategoryLookupComponent } from './components/category-lookup/category-l
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatCardModule
     ],
     providers: [
         RestService,
