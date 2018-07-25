@@ -28,7 +28,7 @@ export class CategoryLookupComponent implements OnInit {
         // TODO: Add in typeahead filter on Obs.
         this.categoryFilter.get('filterBy').valueChanges.subscribe(
             (change) => {
-                console.log('On Change - ', change);
+                this.onInputChange();
             }
         );
     }

@@ -24,7 +24,7 @@ export class CategoryService extends RestService {
     }
 
     selectPreference(category: Category) {
-        this.cacheService.setCategory('category', category);
+        this.cacheService.setCache('category', category);
     }
 
 }

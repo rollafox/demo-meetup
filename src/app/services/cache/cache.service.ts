@@ -2,30 +2,50 @@ import { Injectable } from '@angular/core';
 import { Category } from '../../models/category.model';
 import { Observable, Subject } from 'rxjs';
 
-interface CategoryCache {
-    value: string;
-    key: string;
+interface Cache<T> {
+    [key: string]: T;
 }
+
+const DEFAULT_PREFIX = 'dvt-mu';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CacheService {
-    $cached: Subject<CategoryCache> = new Subject();
+    cached: Cache<Category> = {};
 
-    // TODO: this service could use some work.
     constructor() {
+        this.cached = this.getFromStorage();
     }
 
-    setCategory(key, value) {
-        this.$cached.next({
-            'key': key,
-            'value': value
-        });
+    setCache(key, value, prefix?: string) {
+        if (this.cached[key] === value) {
+            return;
+        }
+        this.cached[key] = value;
+        this.saveToStorage(prefix);
     }
 
-    getCategory() {
-        return this.$cached.asObservable();
+    getFromCache(key, prefix?: string) {
+        if (!this.cached[key]) {
+            // TODO: check/get in local storage
+        }
+        return this.cached[key] || null;
+    }
+
+    saveToStorage(prefix = DEFAULT_PREFIX) {
+        localStorage.setItem(prefix, JSON.stringify(this.cached));
+    }
+
+    // TODO: improve error catching, maybe use Generics to infer Type on response.
+    getFromStorage(prefix = DEFAULT_PREFIX) {
+        let storedPackage;
+        try {
+            storedPackage = JSON.parse(localStorage.getItem(prefix));
+        } catch (error) {
+            // fails silently.
+        }
+        return storedPackage || {};
     }
 
 }

@@ -19,12 +19,12 @@ export class GroupService extends RestService {
     }
 
     getPreference() {
-        return this.cacheService.getCategory();
+        return this.cacheService.getFromCache('category');
     }
 
-    // TODO: param builder i.e. category=3,5,7
+    findGroups(categoryFilters): Observable<any> {
+        // TODO: param builder i.e. category=3,5,7
 
-    findGroups(): Observable<any> {
         return this.get('find/groups').pipe(map((response: MeetUpGroupResponse) => response));
     }
 

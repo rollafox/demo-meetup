@@ -9,13 +9,14 @@ import { GroupService } from '../../services/group/group.service';
 })
 export class GroupsComponent implements OnInit {
     groups$;
-    selectedFilters;
+    selectedFilters = [];
 
     constructor(private groupService: GroupService,
         private formBuilder: FormBuilder) { }
 
     ngOnInit() {
-        this.groups$ = this.groupService.findGroups();
+        this.selectedFilters.push(this.groupService.getPreference());
+        this.groups$ = this.groupService.findGroups(this.selectedFilters);
     }
 
     addFilter(selected) {
