@@ -18,5 +18,5 @@
 
 ## Keep in Mind
 
-- Tests
+- Learn Karma Testing on the Fly
 - Documentation

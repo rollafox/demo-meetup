@@ -13,8 +13,6 @@ import { SettingsService } from '../../services/settings/settings.service';
 })
 export class SettingsComponent implements OnInit {
     categories: Array<Category> = [];
-    list$: Observable<Array<Category>>;
-    categoryFilter: FormGroup;
 
     constructor(private categoryService: CategoryService,
         private settingsService: SettingsService) { }
