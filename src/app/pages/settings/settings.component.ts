@@ -17,8 +17,7 @@ export class SettingsComponent implements OnInit {
     categoryFilter: FormGroup;
 
     constructor(private categoryService: CategoryService,
-        private settingsService: SettingsService,
-        private formBuilder: FormBuilder) { }
+        private settingsService: SettingsService) { }
 
     ngOnInit() {
     }

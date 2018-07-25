@@ -1,14 +1,12 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Category } from '../../models/category.model';
-import { MeetUpConfiguration, ApiEndPoint } from '../_configuration/meetup-configuration';
-import { MeetUpGroupResponse } from '../../models/rest/meetup-responses.model';
+import { Utils } from '../../utils/url-parameter.helper';
+import { ApiEndPoint, MeetUpConfiguration } from '../_configuration/meetup-configuration';
 import { CacheService } from '../cache/cache.service';
 import { RestService } from '../rest.service';
-import { Utils } from '../../utils/url-parameter.helper';
 
 @Injectable({
     providedIn: 'root'

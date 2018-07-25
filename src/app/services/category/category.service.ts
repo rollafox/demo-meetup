@@ -13,6 +13,7 @@ import { RestService } from '../rest.service';
     providedIn: 'root'
 })
 export class CategoryService extends RestService {
+    category = []; // TODO: store all categories here... no need to do this call every time.
 
     constructor(http: HttpClient, private cacheService: CacheService) {
         super(http);

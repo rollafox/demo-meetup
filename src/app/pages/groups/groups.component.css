@@ -9,5 +9,6 @@
 .dvtmu-card-container__groups{
     display: inline-block;
 	margin: 15px;
-	max-width: 250px;
+    max-width: 250px;
+    vertical-align: top;
 }

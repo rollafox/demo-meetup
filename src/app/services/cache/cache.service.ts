@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../../models/category.model';
 
 interface Cache<T> {
-    [prefixedKey: string]: {[key: string]: T};
+    [prefixedKey: string]: { [key: string]: T };
 }
 
 const DEFAULT_PREFIX = 'dvt-mu';
@@ -12,13 +12,12 @@ const DEFAULT_PREFIX = 'dvt-mu';
     providedIn: 'root'
 })
 export class CacheService {
-    cached: Cache<Category> = {[DEFAULT_PREFIX]: {}}; // TODO: use Generics to infer Type.
+    cached: Cache<Category> = { [DEFAULT_PREFIX]: {} }; // TODO: use Generics to infer Type.
 
     constructor() {
-        this.cached = this.getFromStorage();
     }
 
-    setCache(key, value, prefix?: string) {
+    setCache(key, value, prefix?: string): void {
         if (this.cached[key] === value) {
             return;
         }
@@ -26,19 +25,20 @@ export class CacheService {
         this.saveToStorage(prefix);
     }
 
-    getFromCache(key, prefix?: string) {
+    getFromCache(key, prefix?: string): { [key: string]: Category } | null {
         if (!this.cached[key]) {
             // TODO: check/get in local storage
+            this.cached = this.getFromStorage(prefix);
         }
         return this.cached[key] || null;
     }
 
-    saveToStorage(prefix = DEFAULT_PREFIX) {
+    private saveToStorage(prefix: string = DEFAULT_PREFIX): void {
         localStorage.setItem(prefix, JSON.stringify(this.cached));
     }
 
     // TODO: improve error catching
-    getFromStorage(prefix = DEFAULT_PREFIX) {
+    private getFromStorage(prefix: string = DEFAULT_PREFIX): Cache<Category> {
         let storedPackage;
         try {
             storedPackage = JSON.parse(localStorage.getItem(prefix));

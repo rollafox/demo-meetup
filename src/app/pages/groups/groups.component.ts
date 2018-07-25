@@ -11,10 +11,10 @@ import { SettingsService } from '../../services/settings/settings.service';
 export class GroupsComponent implements OnInit {
     groups$;
     selectedFilters = [];
+    placeholderImg = './assets/img/placeholder.png';
 
     constructor(private groupService: GroupService,
-        private settingsService: SettingsService,
-        private formBuilder: FormBuilder) { }
+        private settingsService: SettingsService) { }
 
     ngOnInit() {
         this.groups$ = this.groupService.findGroups(this.getPreSetPref());
@@ -33,5 +33,9 @@ export class GroupsComponent implements OnInit {
             this.selectedFilters.push(pref);
         }
         return this.selectedFilters;
+    }
+
+    truncate(str, length = 150) {
+        return str.substr(0, Math.min(str.length, length));
     }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,7 @@ export class CategoryLookupComponent implements OnInit {
     categories: Array<Category> = [];
     list$: Observable<Array<Category>>;
     categoryFilter: FormGroup;
+    @Input('placeholder') placeholder = 'Search';
     @Output('selectedCategory') selectedCategory = new EventEmitter();
 
     constructor(private categoryService: CategoryService,

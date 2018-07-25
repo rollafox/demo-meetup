@@ -1,4 +1,10 @@
 <div>
-  <dvt-mu-category-lookup (selectedCategory)="updatePreference($event)"></dvt-mu-category-lookup>
-  <button matButton>Save Preference</button>
+    <h2>Settings</h2>
+</div>
+<div>
+<!-- TODO: show currently selected preference -->
+<!-- TODO: add clear preferences -->
+
+    <dvt-mu-category-lookup [placeholder]="'Select Preference'" (selectedCategory)="updatePreference($event)"></dvt-mu-category-lookup>
+
 </div>
