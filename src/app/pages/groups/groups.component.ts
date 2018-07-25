@@ -16,11 +16,10 @@ export class GroupsComponent implements OnInit {
 
     ngOnInit() {
         this.groups$ = this.groupService.findGroups();
-        this.selectedFilters;
     }
 
-    addFilter() {
-
+    addFilter(selected) {
+        this.selectedFilters.push(selected);
     }
 
 }
