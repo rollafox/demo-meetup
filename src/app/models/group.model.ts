@@ -4,12 +4,12 @@ See: https://www.meetup.com/meetup_api/docs/find/groups/
 */
 import { Category } from './category.model';
 
-interface GroupConf {
-    approved: string;
+export interface GroupConf {
+    approved?: string;
     category: Category;
     city: string;
     country: string;
-    created: string;
+    created: number;
     description: string;
     group_photo: Object;
     id: number;
@@ -18,20 +18,18 @@ interface GroupConf {
     localized_country_name: string;
     localized_location: string;
     lon: number;
-    members: string;
+    members: number;
     name: string;
     next_event: Object;
-    untranslated_city: string;
-    urlname: string;
     visibility: string;
 }
 
-export class Group {
+export class Group implements GroupConf {
     approved: string;
     category: Category;
     city: string;
     country: string;
-    created: string;
+    created: number;
     description: string;
     group_photo: Object;
     id: number;
@@ -40,11 +38,9 @@ export class Group {
     localized_country_name: string;
     localized_location: string;
     lon: number;
-    members: string;
+    members: number;
     name: string;
     next_event: Object;
-    untranslated_city: string;
-    urlname: string;
     visibility: string;
 
     constructor(conf: GroupConf) {
@@ -64,8 +60,6 @@ export class Group {
         this.members = conf.members;
         this.name = conf.name;
         this.next_event = conf.next_event;
-        this.untranslated_city = conf.untranslated_city;
-        this.urlname = conf.urlname;
         this.visibility = conf.visibility;
     }
 }

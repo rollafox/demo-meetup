@@ -5,16 +5,27 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { MatInputModule } from '../../../../node_modules/@angular/material/input';
-import { BrowserAnimationsModule } from '../../../../node_modules/@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryService } from '../../services/category/category.service';
 import { CategoryLookupComponent } from './category-lookup.component';
+import { Category } from '../../models/category.model';
+import { of } from '../../../../node_modules/rxjs';
 
 describe('CategoryLookupComponent', () => {
     let component: CategoryLookupComponent;
     let fixture: ComponentFixture<CategoryLookupComponent>;
+    let testCategory: Array<Category>;
 
     beforeEach(async(() => {
+        testCategory = [{
+            'id': 1,
+            'name': 'Arts & Culture',
+            'shortname': 'Arts'
+        }];
+        const categoryService = jasmine.createSpyObj('CategoryService', ['getCategories']),
+            getCategoriesSpy = categoryService.getCategories.and.returnValue(of(testCategory));
+
         TestBed.configureTestingModule({
             declarations: [CategoryLookupComponent],
             imports: [
@@ -26,19 +37,16 @@ describe('CategoryLookupComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
-                CategoryService
+                { provide: CategoryService, useValue: categoryService }
             ]
-        })
-            .compileComponents();
-    }));
+        }).compileComponents();
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(CategoryLookupComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-    });
-
-    it('should create', inject([HttpTestingController], () => {
-        expect(component).toBeTruthy();
     }));
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

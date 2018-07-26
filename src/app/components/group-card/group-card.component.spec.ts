@@ -13,8 +13,7 @@ describe('GroupCardComponent', () => {
             imports: [
                 MatCardModule
             ]
-        })
-            .compileComponents();
+        }).compileComponents();
     }));
 
     beforeEach(() => {

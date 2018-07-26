@@ -1,6 +1,6 @@
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { async, inject, TestBed } from '../../../../node_modules/@angular/core/testing';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { HtmlSanitizerPipe } from './html-sanitizer.pipe';
 
 describe('HtmlSanitizerPipe', () => {

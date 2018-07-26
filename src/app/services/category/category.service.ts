@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 
 import { Category } from '../../models/category.model';
 import { MeetUpConfiguration, ApiEndPoint } from '../_configuration/meetup-configuration';
@@ -17,14 +17,19 @@ export class CategoryService extends RestService {
 
     constructor(http: HttpClient, private cacheService: CacheService) {
         super(http);
-        this.setConfiguration(MeetUpConfiguration);
     }
 
     getCategories(): Observable<Array<Category>> {
         return this.get(
             ApiEndPoint.GET.CATEGORIES
         ).pipe(
-            map((response: MeetUpCategoryResponse) => <Array<Category>>response.results)
+            map((response: MeetUpCategoryResponse) => {
+                return <Array<Category>>response.results.map(
+                    (resultCategory) => {
+                        return new Category(resultCategory);
+                    }
+                );
+            })
         );
     }
 

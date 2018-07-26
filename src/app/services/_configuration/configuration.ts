@@ -1,3 +1,6 @@
+import { MeetUpConfiguration } from './meetup-configuration';
+
+export const DEFAULT_CONFIGURATION: RestConfigurationInterface = MeetUpConfiguration;
 
 export interface RestConfigurationInterface {
     readonly REST_BASE: string;

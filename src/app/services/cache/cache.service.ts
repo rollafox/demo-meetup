@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Category } from '../../models/category.model';
 
-interface Cache<T> {
+export interface Cache<T> {
     [prefixedKey: string]: { [key: string]: T };
 }
 
@@ -12,7 +12,7 @@ const DEFAULT_PREFIX = 'dvt-mu';
     providedIn: 'root'
 })
 export class CacheService {
-    cached: Cache<Category> = { [DEFAULT_PREFIX]: {} }; // TODO: use Generics to infer Type.
+    cached: Cache<Category> = {}; // TODO: use Generics to infer Type.
 
     constructor() {
     }
@@ -27,13 +27,13 @@ export class CacheService {
 
     getFromCache(key, prefix?: string): { [key: string]: Category } | null {
         if (!this.cached[key]) {
-            // TODO: check/get in local storage
             this.cached = this.getFromStorage(prefix);
         }
         return this.cached[key] || null;
     }
 
     private saveToStorage(prefix: string = DEFAULT_PREFIX): void {
+        // TODO: disallow none-json stuff from entering.
         localStorage.setItem(prefix, JSON.stringify(this.cached));
     }
 
