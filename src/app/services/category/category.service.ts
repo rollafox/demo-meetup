@@ -12,15 +12,15 @@ import { RestService } from '../rest.service';
 @Injectable({
     providedIn: 'root'
 })
-export class CategoryService extends RestService {
+export class CategoryService {
     category = []; // TODO: store all categories here... no need to do this call every time.
 
-    constructor(http: HttpClient, private cacheService: CacheService) {
-        super(http);
+    constructor(private rest: RestService, private cacheService: CacheService) {
+        // super(http);
     }
 
     getCategories(): Observable<Array<Category>> {
-        return this.get(
+        return this.rest.get(
             ApiEndPoint.GET.CATEGORIES
         ).pipe(
             map((response: MeetUpCategoryResponse) => {
