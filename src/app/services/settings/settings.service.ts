@@ -15,7 +15,7 @@ export class SettingsService {
     }
 
     getPreference(): Category {
-        return this.cacheService.getFromCache('category', 'dvt-mu-category-pref')['category'];
+        return this.cacheService.getFromCache('category', 'dvt-mu-category-pref');
     }
 
     clearAllPreference() {

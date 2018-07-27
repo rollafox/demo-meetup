@@ -14,7 +14,7 @@ import { SettingsService } from '../../services/settings/settings.service';
 import { GroupsComponent } from './groups.component';
 import { Category } from '../../models/category.model';
 import { of } from 'rxjs';
-import { Cache } from '../../services/cache/cache.service';
+import { Storage } from '../../services/cache/cache.service';
 import { Group } from '../../models/group.model';
 import { GroupService } from '../../services/group/group.service';
 import { MatInputModule } from '@angular/material/input';
@@ -24,7 +24,7 @@ describe('GroupsComponent', () => {
     let component: GroupsComponent,
         fixture: ComponentFixture<GroupsComponent>,
         testGroup: Array<Group>,
-        testSettings: Cache<Category>,
+        testSettings: Storage<Category>,
         testCategory: Array<Category>;
 
     beforeEach(async(() => {

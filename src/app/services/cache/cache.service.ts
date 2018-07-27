@@ -3,7 +3,11 @@ import { Injectable } from '@angular/core';
 import { Category } from '../../models/category.model';
 
 export interface Cache<T> {
-    [prefixedKey: string]: { [key: string]: T };
+     [key: string]: T;
+}
+
+export interface Storage<T> {
+    [prefixKey: string]: Cache<T>;
 }
 
 const DEFAULT_PREFIX = 'dvt-mu';
@@ -25,7 +29,7 @@ export class CacheService {
         this.saveToStorage(prefix);
     }
 
-    getFromCache(key, prefix?: string): { [key: string]: Category } | null {
+    getFromCache(key, prefix?: string): Category | null {
         if (!this.cached[key]) {
             this.cached = this.getFromStorage(prefix);
         }
