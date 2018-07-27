@@ -1,22 +1,27 @@
 # TODO Notes
 
-## Services
+## Bugs Fixes/Necessary Improvements
+
+- Verbose Testing
+- Add "Remove Filter" Option
+- Service Workers to reduce API Calls
+- Documentation
+
+## Features
+
+- Add Header
+- Add Navigation Menu UI
+- Add Settings "Display Preference"
+- Add Settings "Clear Preference"
+- Consider SSR Implementation
+- Add `REST Interceptor` mainly for error handling
+
+## Completed
 
 - ~~Assess `Meetup.com's` API.~~
-- Make `REST Interceptor`.
-- Improve API calls, and Filtering of Results
-- ~~Layout Foundation for `REST` Requests.~~
-- ~~Re-factor Caching Service.~~
-- Create General Conf/Util if required.
-
-## Components/Layout
-
 - ~~Create Initial Layout for each page.~~
 - ~~Build Form Components.~~
 - ~~Tie Services into Components.~~
-- Flesh-out UI
-
-## Keep in Mind
-
-- Learn Karma Testing on the Fly
-- Documentation
+- ~~Layout Foundation for `REST` Requests.~~
+- ~~Re-factor Caching Service.~~
+- ~~Learn Karma Testing on the Fly.~~
