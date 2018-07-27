@@ -2,3 +2,11 @@ main{
     max-width: 1120px;
     margin: 0 auto;
 }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+a {
+    color:#fff;
+}

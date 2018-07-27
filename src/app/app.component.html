@@ -1,13 +1,14 @@
 <header>
-  <div style="text-align:center">
-    <h1>
-      Meet-up Demo Project
-    </h1>
-    <div class="simple-nav">
-      <a routerLink="/groups">Home</a>
-      <a routerLink="/settings">Settings</a>
-    </div>
-  </div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <h1>Meet-up Demo</h1>
+      <div class="spacer"></div>
+      <nav>
+        <a routerLink="/groups"><button mat-button>Home</button></a>
+        <a routerLink="/settings"><button mat-button>Settings</button></a>
+      </nav>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </header>
 <main>
   <router-outlet></router-outlet>

@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { CategoryLookupComponent } from '../../components/category-lookup/category-lookup.component';
 import { Category } from '../../models/category.model';
-import { Cache } from '../../services/cache/cache.service';
+import { Storage } from '../../services/cache/cache.service';
 import { CategoryService } from '../../services/category/category.service';
 import { SettingsService } from '../../services/settings/settings.service';
 import { SettingsComponent } from './settings.component';
@@ -16,7 +16,7 @@ import { SettingsComponent } from './settings.component';
 describe('SettingsComponent', () => {
     let component: SettingsComponent,
         fixture: ComponentFixture<SettingsComponent>,
-        testSettings: Cache<Category>,
+        testSettings: Storage<Category>,
         testCategory: Array<Category>;
 
     beforeEach(async(() => {
