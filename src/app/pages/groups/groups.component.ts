@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { GroupService } from '../../services/group/group.service';
 import { SettingsService } from '../../services/settings/settings.service';
+import { Category } from '../../models/category.model';
 
 @Component({
     selector: 'dvt-mu-groups',
@@ -10,7 +11,7 @@ import { SettingsService } from '../../services/settings/settings.service';
 })
 export class GroupsComponent implements OnInit {
     groups$;
-    selectedFilters = [];
+    selectedFilters: Array<Category> = [];
     placeholderImg = './assets/img/placeholder.png';
 
     constructor(private groupService: GroupService,

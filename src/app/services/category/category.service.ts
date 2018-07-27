@@ -1,11 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { Category } from '../../models/category.model';
-import { MeetUpConfiguration, ApiEndPoint } from '../_configuration/meetup-configuration';
 import { MeetUpCategoryResponse } from '../../models/rest/meetup-responses.model';
+import { ApiEndPoint } from '../_configuration/meetup-configuration';
 import { CacheService } from '../cache/cache.service';
 import { RestService } from '../rest.service';
 
@@ -16,7 +15,6 @@ export class CategoryService {
     category = []; // TODO: store all categories here... no need to do this call every time.
 
     constructor(private rest: RestService, private cacheService: CacheService) {
-        // super(http);
     }
 
     getCategories(): Observable<Array<Category>> {

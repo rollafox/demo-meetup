@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RestConfigurationInterface, Configuration, DEFAULT_CONFIGURATION } from './_configuration/configuration';
 import { Observable } from 'rxjs';
+
+import { Configuration, DEFAULT_CONFIGURATION, RestConfigurationInterface } from './_configuration/configuration';
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +11,8 @@ export class RestService {
     protected configuration: Configuration = new Configuration(DEFAULT_CONFIGURATION);
 
     private httpHeaders: HttpHeaders = new HttpHeaders({
-            'Accept': 'application/json'
-        });
+        'Accept': 'application/json'
+    });
 
     constructor(private http: HttpClient) {
     }
@@ -22,7 +23,10 @@ export class RestService {
 
     get(dir: string, params?: HttpParams): Observable<Object> {
         const headers = this.httpHeaders;
-        return this.http.get(this.configuration.getUrl(dir), {headers, params});
+        return this.http.get(
+            this.configuration.getUrl(dir),
+            { headers, params }
+        );
     }
 
     post() {

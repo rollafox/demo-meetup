@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { inject, TestBed, async } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, inject, TestBed } from '@angular/core/testing';
 
-import { CategoryService } from './category.service';
-import { ApiEndPoint } from '../_configuration/meetup-configuration';
+import { of } from 'rxjs';
 import { RestService } from '../rest.service';
-import { of } from '../../../../node_modules/rxjs';
+import { CategoryService } from './category.service';
 
 describe('CategoryService', () => {
     let restServiceSpy: jasmine.SpyObj<RestService>;
@@ -29,7 +27,7 @@ describe('CategoryService', () => {
         expect(service).toBeTruthy();
     }));
 
-    it('should return categories', async(
+    it('getCategoriesFn should call rest.getFn once', async(
         inject([RestService, CategoryService],
             (rest: RestService, service: CategoryService) => {
                 const testResponse = {

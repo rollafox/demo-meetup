@@ -13,7 +13,7 @@ import { CategoryService } from '../../services/category/category.service';
 import { SettingsService } from '../../services/settings/settings.service';
 import { GroupsComponent } from './groups.component';
 import { Category } from '../../models/category.model';
-import { of } from '../../../../node_modules/rxjs';
+import { of } from 'rxjs';
 import { Cache } from '../../services/cache/cache.service';
 import { Group } from '../../models/group.model';
 import { GroupService } from '../../services/group/group.service';

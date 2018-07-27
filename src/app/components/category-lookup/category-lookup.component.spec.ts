@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryService } from '../../services/category/category.service';
 import { CategoryLookupComponent } from './category-lookup.component';
 import { Category } from '../../models/category.model';
-import { of } from '../../../../node_modules/rxjs';
+import { of } from 'rxjs';
 
 describe('CategoryLookupComponent', () => {
     let component: CategoryLookupComponent;

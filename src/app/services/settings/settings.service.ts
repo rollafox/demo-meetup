@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Category } from '../../models/category.model';
 import { CacheService } from '../cache/cache.service';
 
@@ -13,8 +14,8 @@ export class SettingsService {
         this.cacheService.setCache('category', category, 'dvt-mu-category-pref');
     }
 
-    getPreference() {
-        return this.cacheService.getFromCache('category', 'dvt-mu-category-pref');
+    getPreference(): Category {
+        return this.cacheService.getFromCache('category', 'dvt-mu-category-pref')['category'];
     }
 
     clearAllPreference() {
