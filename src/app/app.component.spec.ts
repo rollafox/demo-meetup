@@ -1,11 +1,29 @@
+import { Directive, Input } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { AppComponent } from './app.component';
+import { MatButtonModule } from '../../node_modules/@angular/material/button';
 import { MatToolbarModule } from '../../node_modules/@angular/material/toolbar';
 import { By } from '../../node_modules/@angular/platform-browser';
-import { MatButtonModule } from '../../node_modules/@angular/material/button';
-import { RouterLinkDirectiveStub } from './testing/router-link-directive-stub';
+import { AppComponent } from './app.component';
+
+// copied from https://angular.io/guide/testing#components-with-routerlink
+@Directive({
+    // tslint:disable-next-line:directive-selector
+    selector: '[routerLink]',
+    // tslint:disable-next-line:use-host-property-decorator
+    host: { '(click)': 'onClick()' }
+})
+// tslint:disable-next-line:directive-class-suffix
+class RouterLinkDirectiveStub {
+    // tslint:disable-next-line:no-input-rename
+    @Input('routerLink') linkParams: any;
+    navigatedTo: any = null;
+
+    onClick() {
+        this.navigatedTo = this.linkParams;
+    }
+}
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
@@ -49,9 +67,9 @@ describe('AppComponent', () => {
 
     it('should get routerLinks from template', async(() => {
         const fixture = TestBed.createComponent(AppComponent),
-        linkDes = fixture.debugElement
-            .queryAll(By.directive(RouterLinkDirectiveStub)),
-        routerLinks = linkDes.map(de => de.injector.get(RouterLinkDirectiveStub));
+            linkDes = fixture.debugElement
+                .queryAll(By.directive(RouterLinkDirectiveStub)),
+            routerLinks = linkDes.map(de => de.injector.get(RouterLinkDirectiveStub));
         fixture.detectChanges();
         expect(routerLinks.length).toBe(2, 'should have 2 routerLinks');
         expect(routerLinks[0].linkParams).toBe('/groups');

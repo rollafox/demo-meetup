@@ -11,8 +11,8 @@
 
 ## Features
 
-- Add Header
-- Add Navigation Menu UI
+- ~~Add Header~~
+- ~~Add Navigation Menu UI~~
 - Add Settings "Display Preference"
 - Add Settings "Clear Preference"
 - Add Group Sorting Functionality
