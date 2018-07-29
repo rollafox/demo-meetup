@@ -7,6 +7,7 @@ import { MeetUpCategoryResponse } from '../../models/rest/meetup-responses.model
 import { ApiEndPoint } from '../_configuration/meetup-configuration';
 import { CacheService } from '../cache/cache.service';
 import { RestService } from '../rest.service';
+import { MatSnackBar } from '../../../../node_modules/@angular/material/snack-bar';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ import { RestService } from '../rest.service';
 export class CategoryService {
     categories: BehaviorSubject<Array<Category>> = new BehaviorSubject([]);
 
-    constructor(private rest: RestService, private cacheService: CacheService) {
+    constructor(private rest: RestService, private cacheService: CacheService, private snackBarService: MatSnackBar) {
     }
 
     getCategories(): Observable<Array<Category>> {
@@ -24,8 +25,8 @@ export class CategoryService {
         return this.categories.asObservable();
     }
 
-    fetchCategories() {
-        return this.rest.get(
+    fetchCategories(): void {
+        this.rest.get(
             ApiEndPoint.GET.CATEGORIES
         ).pipe(
             map((response: MeetUpCategoryResponse) => {
@@ -38,6 +39,9 @@ export class CategoryService {
         ).subscribe(
             (results) => {
                 this.categories.next(results);
+            },
+            (error) => {
+                this.snackBarService.open('Failed to fetch Categories', 'Dismiss');
             }
         );
     }

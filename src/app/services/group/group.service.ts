@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { map } from 'rxjs/operators';
+
 import { Category } from '../../models/category.model';
 import { Group, GroupConf } from '../../models/group.model';
 import { Utils } from '../../utils/url-parameter.helper';

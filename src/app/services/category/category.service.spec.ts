@@ -1,14 +1,15 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, inject, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
-import { of, BehaviorSubject } from 'rxjs';
+import { Category } from '../../models/category.model';
 import { RestService } from '../rest.service';
 import { CategoryService } from './category.service';
-import { Category } from '../../models/category.model';
+import { MatSnackBarModule } from '../../../../node_modules/@angular/material/snack-bar';
 
 describe('CategoryService', () => {
     let restServiceSpy: jasmine.SpyObj<RestService>,
-    testCategory: Array<Category>;
+        testCategory: Array<Category>;
 
     beforeEach(() => {
         const spy = jasmine.createSpyObj('RestService', ['get']);
@@ -20,7 +21,7 @@ describe('CategoryService', () => {
             })
         ];
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
+            imports: [HttpClientTestingModule, MatSnackBarModule],
             providers: [
                 CategoryService,
                 {

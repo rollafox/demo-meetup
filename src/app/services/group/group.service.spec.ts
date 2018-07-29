@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, inject, TestBed } from '@angular/core/testing';
-
 import { of } from 'rxjs';
+
 import { Category } from '../../models/category.model';
 import { RestService } from '../rest.service';
 import { GroupService } from './group.service';

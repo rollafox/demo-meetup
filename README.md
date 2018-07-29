@@ -2,18 +2,13 @@
 
 ## Bugs Fixes/Necessary Improvements
 
-- ~~(BUG) "Add Category" Accepts Invalid Input and Fails.~~
 - Verbose Testing
-- ~~Add "Remove Filter" Option~~
 - Service Workers to reduce API Calls
 - Documentation
-- ~~Update to @angular@latest~~
+- Error Handling
 
 ## Features
 
-- ~~Add Header~~
-- ~~Add Navigation Menu UI~~
-- ~~Add Settings "Display Preference"~~
 - Add Settings "Clear Preference"
 - Add Group Sorting Functionality
 - Consider SSR Implementation
@@ -25,6 +20,12 @@
 
 ## Completed
 
+- ~~Add Header~~
+- ~~Add Navigation Menu UI~~
+- ~~Add Settings "Display Preference"~~
+- ~~(BUG) "Add Category" Accepts Invalid Input and Fails.~~
+- ~~Add "Remove Filter" Option~~
+- ~~Update to @angular@latest~~
 - ~~Assess `Meetup.com's` API.~~
 - ~~Create Initial Layout for each page.~~
 - ~~Build Form Components.~~
