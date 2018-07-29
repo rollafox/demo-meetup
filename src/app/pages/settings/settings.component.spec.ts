@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 
 import { CategoryLookupComponent } from '../../components/category-lookup/category-lookup.component';
+import { PreferenceDisplayComponent } from '../../components/preference-display/preference-display.component';
 import { Category } from '../../models/category.model';
 import { Storage } from '../../services/cache/cache.service';
 import { CategoryService } from '../../services/category/category.service';
 import { SettingsService } from '../../services/settings/settings.service';
 import { SettingsComponent } from './settings.component';
+import { MatChipsModule } from '../../../../node_modules/@angular/material/chips';
 
 describe('SettingsComponent', () => {
     let component: SettingsComponent,
@@ -40,12 +42,14 @@ describe('SettingsComponent', () => {
             getPreferenceSpy = settingsService.getPreference.and.returnValue(of(testSettings));
         TestBed.configureTestingModule({
             declarations: [SettingsComponent,
-                CategoryLookupComponent],
+                CategoryLookupComponent,
+                PreferenceDisplayComponent],
             imports: [
                 ReactiveFormsModule,
                 BrowserAnimationsModule,
                 MatAutocompleteModule,
                 MatInputModule,
+                MatChipsModule,
                 MatFormFieldModule
             ],
             providers: [

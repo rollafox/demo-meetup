@@ -1,24 +1,25 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
-
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CategoryLookupComponent } from '../../components/category-lookup/category-lookup.component';
-import { GroupCardComponent } from '../../components/group-card/group-card.component';
-import { HtmlSanitizerPipe } from '../../pipes/html-sanitizer/html-sanitizer.pipe';
-import { CategoryService } from '../../services/category/category.service';
-import { SettingsService } from '../../services/settings/settings.service';
-import { GroupsComponent } from './groups.component';
-import { Category } from '../../models/category.model';
-import { of } from 'rxjs';
-import { Storage } from '../../services/cache/cache.service';
-import { Group } from '../../models/group.model';
-import { GroupService } from '../../services/group/group.service';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { of } from 'rxjs';
+
+import { MatChipsModule } from '../../../../node_modules/@angular/material/chips';
+import { CategoryLookupComponent } from '../../components/category-lookup/category-lookup.component';
+import { GroupCardComponent } from '../../components/group-card/group-card.component';
+import { PreferenceDisplayComponent } from '../../components/preference-display/preference-display.component';
+import { Category } from '../../models/category.model';
+import { Group } from '../../models/group.model';
+import { HtmlSanitizerPipe } from '../../pipes/html-sanitizer/html-sanitizer.pipe';
+import { Storage } from '../../services/cache/cache.service';
+import { CategoryService } from '../../services/category/category.service';
+import { GroupService } from '../../services/group/group.service';
+import { SettingsService } from '../../services/settings/settings.service';
+import { GroupsComponent } from './groups.component';
 
 describe('GroupsComponent', () => {
     let component: GroupsComponent,
@@ -90,6 +91,7 @@ describe('GroupsComponent', () => {
                 GroupsComponent,
                 CategoryLookupComponent,
                 GroupCardComponent,
+                PreferenceDisplayComponent,
                 HtmlSanitizerPipe
             ],
             imports: [
@@ -98,6 +100,7 @@ describe('GroupsComponent', () => {
                 BrowserAnimationsModule,
                 MatFormFieldModule,
                 MatInputModule,
+                MatChipsModule,
                 MatCardModule,
                 MatAutocompleteModule
             ],

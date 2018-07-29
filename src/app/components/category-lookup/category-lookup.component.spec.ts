@@ -11,6 +11,7 @@ import { CategoryService } from '../../services/category/category.service';
 import { CategoryLookupComponent } from './category-lookup.component';
 import { Category } from '../../models/category.model';
 import { of } from 'rxjs';
+import { MatChipsModule } from '../../../../node_modules/@angular/material/chips';
 
 describe('CategoryLookupComponent', () => {
     let component: CategoryLookupComponent;
@@ -34,6 +35,7 @@ describe('CategoryLookupComponent', () => {
                 MatAutocompleteModule,
                 MatFormFieldModule,
                 MatInputModule,
+                MatChipsModule,
                 HttpClientTestingModule
             ],
             providers: [
