@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MatCardModule } from '@angular/material/card';
+
 import { GroupCardComponent } from './group-card.component';
 
 describe('GroupCardComponent', () => {

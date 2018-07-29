@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+
+import { Category } from '../../models/category.model';
 import { GroupService } from '../../services/group/group.service';
 import { SettingsService } from '../../services/settings/settings.service';
-import { Category } from '../../models/category.model';
 
 @Component({
     selector: 'dvt-mu-groups',

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs'; import { COMMA, ENTER } from '@angular/cdk/ke
 
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category/category.service';
-import { startWith, map } from '../../../../node_modules/rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '../../../../node_modules/@angular/material/autocomplete';
+import { startWith, map } from 'rxjs/operators';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
     selector: 'dvt-mu-category-lookup',

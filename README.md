@@ -2,7 +2,7 @@
 
 ## Bugs Fixes/Necessary Improvements
 
-- (BUG) "Add Category" Accepts Invalid Input and Fails.
+- ~~(BUG) "Add Category" Accepts Invalid Input and Fails.~~
 - Verbose Testing
 - ~~Add "Remove Filter" Option~~
 - Service Workers to reduce API Calls

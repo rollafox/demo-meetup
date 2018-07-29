@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
 
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category/category.service';

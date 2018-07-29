@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +14,6 @@ import { Storage } from '../../services/cache/cache.service';
 import { CategoryService } from '../../services/category/category.service';
 import { SettingsService } from '../../services/settings/settings.service';
 import { SettingsComponent } from './settings.component';
-import { MatChipsModule } from '../../../../node_modules/@angular/material/chips';
 
 describe('SettingsComponent', () => {
     let component: SettingsComponent,

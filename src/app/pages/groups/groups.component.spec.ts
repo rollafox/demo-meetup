@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 
-import { MatChipsModule } from '../../../../node_modules/@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { CategoryLookupComponent } from '../../components/category-lookup/category-lookup.component';
 import { GroupCardComponent } from '../../components/group-card/group-card.component';
 import { PreferenceDisplayComponent } from '../../components/preference-display/preference-display.component';
