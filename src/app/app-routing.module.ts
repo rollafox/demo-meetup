@@ -15,7 +15,7 @@ const routes: Routes = [
         data: { title: 'Groups' }
     },
     {
-        path: '',
+        path: '**',
         redirectTo: '/groups',
         pathMatch: 'full'
     }

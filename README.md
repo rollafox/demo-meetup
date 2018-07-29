@@ -3,16 +3,14 @@
 ## Bugs Fixes/Necessary Improvements
 
 - Verbose Testing
-- Service Workers to reduce API Calls
 - Documentation
-- Error Handling
 
 ## Features
 
 - Add Settings "Clear Preference"
 - Add Group Sorting Functionality
 - Consider SSR Implementation
-- Add `REST Interceptor` mainly for error handling
+- Service Workers
 
 ## Other
 
@@ -20,6 +18,8 @@
 
 ## Completed
 
+- ~~Add `REST Interceptor` mainly for error handling~~
+- ~~Error Handling~~
 - ~~Add Header~~
 - ~~Add Navigation Menu UI~~
 - ~~Add Settings "Display Preference"~~
