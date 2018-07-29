@@ -1,0 +1,8 @@
+<!-- Show current preference -->
+<div style="text-align:center; padding:15px;">
+  Selected Preference:
+  <span class="dvtmu-chip" *ngIf="preference; else noPreference">{{preference.name}}</span>
+  <ng-template #noPreference>
+    <span>None Selected</span>
+  </ng-template>
+</div>

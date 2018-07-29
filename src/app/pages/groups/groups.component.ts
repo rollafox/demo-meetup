@@ -12,26 +12,26 @@ import { Category } from '../../models/category.model';
 export class GroupsComponent implements OnInit {
     groups$;
     selectedFilters: Array<Category> = [];
+    preference: Category;
     placeholderImg = './assets/img/placeholder.png';
 
     constructor(private groupService: GroupService,
         private settingsService: SettingsService) { }
 
     ngOnInit() {
+        this.preference = this.settingsService.getPreference();
         this.groups$ = this.groupService.findGroups(this.getPreSetPref());
     }
 
-    addFilter(selected) {
-        if (!this.selectedFilters.find(filtered => selected.id === filtered.id)) {
-            this.selectedFilters.push(selected);
-            this.groups$ = this.groupService.findGroups(this.selectedFilters); // TODO: add smarter filter
-        }
+    addFilter(selected: Array<Category>) {
+        this.selectedFilters.length = 0;
+        this.selectedFilters.push(...selected);
+        this.groups$ = this.groupService.findGroups(this.getPreSetPref());
     }
 
     getPreSetPref() {
-        const pref = this.settingsService.getPreference();
-        if (pref) {
-            this.selectedFilters.push(pref);
+        if (this.preference) {
+            this.selectedFilters.push(this.preference);
         }
         return this.selectedFilters;
     }

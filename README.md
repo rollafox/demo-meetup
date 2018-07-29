@@ -4,16 +4,16 @@
 
 - (BUG) "Add Category" Accepts Invalid Input and Fails.
 - Verbose Testing
-- Add "Remove Filter" Option
+- ~~Add "Remove Filter" Option~~
 - Service Workers to reduce API Calls
 - Documentation
-- Update to @angular@latest
+- ~~Update to @angular@latest~~
 
 ## Features
 
 - ~~Add Header~~
 - ~~Add Navigation Menu UI~~
-- Add Settings "Display Preference"
+- ~~Add Settings "Display Preference"~~
 - Add Settings "Clear Preference"
 - Add Group Sorting Functionality
 - Consider SSR Implementation

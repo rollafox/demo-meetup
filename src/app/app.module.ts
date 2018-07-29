@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatChipsModule } from '@angular/material/chips';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,6 +23,7 @@ import { CacheService } from './services/cache/cache.service';
 import { CategoryLookupComponent } from './components/category-lookup/category-lookup.component';
 import { SettingsService } from './services/settings/settings.service';
 import { HtmlSanitizerPipe } from './pipes/html-sanitizer/html-sanitizer.pipe';
+import { PreferenceDisplayComponent } from './components/preference-display/preference-display.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +32,8 @@ import { HtmlSanitizerPipe } from './pipes/html-sanitizer/html-sanitizer.pipe';
         GroupsComponent,
         GroupCardComponent,
         CategoryLookupComponent,
-        HtmlSanitizerPipe
+        HtmlSanitizerPipe,
+        PreferenceDisplayComponent
     ],
     imports: [
         BrowserModule,
@@ -44,7 +47,8 @@ import { HtmlSanitizerPipe } from './pipes/html-sanitizer/html-sanitizer.pipe';
         MatAutocompleteModule,
         MatCardModule,
         MatButtonModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatChipsModule
     ],
     providers: [
         RestService,

@@ -13,11 +13,12 @@ import { SettingsService } from '../../services/settings/settings.service';
 })
 export class SettingsComponent implements OnInit {
     categories: Array<Category> = [];
-
+    preference: Category;
     constructor(private categoryService: CategoryService,
         private settingsService: SettingsService) { }
 
     ngOnInit() {
+        this.preference = this.settingsService.getPreference();
     }
 
     displayFn(category?: Category): string | undefined {
@@ -25,7 +26,8 @@ export class SettingsComponent implements OnInit {
     }
 
     updatePreference(categorySelected) {
-        this.settingsService.setPreference(categorySelected);
+        this.settingsService.setPreference(categorySelected[0]);
+        this.preference = categorySelected[0];
     }
 
 }

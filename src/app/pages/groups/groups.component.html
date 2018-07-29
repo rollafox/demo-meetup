@@ -1,11 +1,11 @@
 <div>
-  <!-- category lookup filter. -->
-  <dvt-mu-category-lookup [placeholder]="'Add Category'" (selectedCategory)="addFilter($event)"></dvt-mu-category-lookup>
+  <!-- Show current preference -->
+  <dvt-mu-preference-display [preference]="preference"></dvt-mu-preference-display>
 
-  <!-- Show current filters applied -->
-  <ng-container *ngFor="let filter of selectedFilters">
-    <div class="dvtmu-chip">{{filter.name}}</div>
-  </ng-container>
+  <!-- category lookup filter. -->
+  <div>
+    <dvt-mu-category-lookup [placeholder]="'Add Category'" (selected)="addFilter($event)"></dvt-mu-category-lookup>
+  </div>
 </div>
 
 <div>
@@ -14,7 +14,7 @@
     <div class="dvtmu-card-container__groups">
       <dvt-mu-group-card [cardItem]="group">
         <mat-card-header>
-            <img  mat-card-avatar  src="{{group?.group_photo?.thumb_link || placeholderImg}}">
+          <img mat-card-avatar src="{{group?.group_photo?.thumb_link || placeholderImg}}">
           <mat-card-title>{{group?.name}}</mat-card-title>
           <mat-card-subtitle>{{group?.category?.name}}</mat-card-subtitle>
         </mat-card-header>

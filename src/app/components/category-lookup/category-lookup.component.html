@@ -1,10 +1,17 @@
-<form [formGroup]="categoryFilter">
-  <mat-form-field>
-    <input type="text" [placeholder]="placeholder" [formControlName]="'filterBy'" [matAutocomplete]="categoryLookup" matInput>
-    <mat-autocomplete autoActiveFirstOption #categoryLookup="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let category of list$ | async" [value]="category">
+<form [formGroup]="categoryControl">
+  <mat-form-field class="full-width">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let category of selectedCategories" (removed)="remove(category)">
         {{category.name}}
-      </mat-option>
-    </mat-autocomplete>
+        <span matChipRemove>x</span>
+      </mat-chip>
+      <input type="text" #autoCompInput [placeholder]="placeholder" [formControlName]="'filterBy'" [matAutocomplete]="categoryLookup"
+        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeys" [matChipInputAddOnBlur]="false">
+      <mat-autocomplete autoActiveFirstOption #categoryLookup="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let category of filteredList$ | async" [value]="category">
+          {{category.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-chip-list>
   </mat-form-field>
 </form>

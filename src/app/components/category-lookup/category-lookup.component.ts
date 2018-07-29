@@ -1,9 +1,11 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs'; import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category/category.service';
+import { startWith, map } from '../../../../node_modules/rxjs/operators';
+import { MatAutocompleteSelectedEvent } from '../../../../node_modules/@angular/material/autocomplete';
 
 @Component({
     selector: 'dvt-mu-category-lookup',
@@ -12,25 +14,34 @@ import { CategoryService } from '../../services/category/category.service';
 })
 export class CategoryLookupComponent implements OnInit {
     categories: Array<Category> = [];
-    list$: Observable<Array<Category>>;
-    categoryFilter: FormGroup;
+    filteredList$: Observable<Array<Category>>;
+    selectedCategories: Array<Category> = [];
+    categoryControl: FormGroup;
+    separatorKeys: number[] = [ENTER, COMMA];
     @Input('placeholder') placeholder = 'Search';
-    @Output('selectedCategory') selectedCategory = new EventEmitter();
+    @Input('multiSelect') multiSelect = true;
+    // tslint:disable-next-line:no-output-rename
+    @Output('selected') selectedEmitter = new EventEmitter();
+    @ViewChild('autoCompInput') autoCompInput: ElementRef;
 
     constructor(private categoryService: CategoryService,
         private formBuilder: FormBuilder) { }
 
     ngOnInit() {
-        this.categoryFilter = this.formBuilder.group({
+        this.categoryControl = this.formBuilder.group({
             'filterBy': ''
         });
-        this.list$ = this.categoryService.getCategories();
 
-        // TODO: Add in typeahead filter on Obs.
-        this.categoryFilter.get('filterBy').valueChanges.subscribe(
-            (change) => {
-                this.onInputChange();
+        this.categoryService.getCategories().subscribe(
+            (fetchedCategories) => {
+                this.categories = fetchedCategories.slice();
             }
+        );
+        this.filteredList$ = this.categoryControl.get('filterBy').valueChanges.pipe(
+            startWith(null),
+            map((value: string | null) => {
+                return value ? this._filter(value) : this.categories.slice();
+            })
         );
     }
 
@@ -38,8 +49,31 @@ export class CategoryLookupComponent implements OnInit {
         return category ? category.name : undefined;
     }
 
-    onInputChange() {
-        this.selectedCategory.emit(this.categoryFilter.get('filterBy').value);
+    remove(category: Category): void {
+        const index = this.selectedCategories.indexOf(category);
+        if (index >= 0) {
+            this.selectedCategories.splice(index, 1);
+        }
+    }
+
+    selected(event: MatAutocompleteSelectedEvent): void {
+        if (!this.multiSelect) {
+            this.selectedCategories.length = 0;
+        }
+        this.selectedCategories.push(event.option.value);
+        this.selectedEmitter.emit(this.selectedCategories);
+        this.autoCompInput.nativeElement.value = '';
+        this.categoryControl.get('filterBy').setValue(null);
+    }
+
+    private _filter(value: Category | string): Category[] {
+        if (value instanceof Category) {
+            return this.categories.filter(cat => cat.id !== value.id);
+        }
+        const filterValue = value.toLowerCase();
+        return this.categories.filter(cat => {
+            return cat.name.toLowerCase().indexOf(filterValue) === 0 && !this.selectedCategories.includes(cat);
+        });
     }
 
 }
