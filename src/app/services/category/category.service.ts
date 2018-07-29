@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Category } from '../../models/category.model';
@@ -12,12 +12,19 @@ import { RestService } from '../rest.service';
     providedIn: 'root'
 })
 export class CategoryService {
-    category = []; // TODO: store all categories here... no need to do this call every time.
+    categories: BehaviorSubject<Array<Category>> = new BehaviorSubject([]);
 
     constructor(private rest: RestService, private cacheService: CacheService) {
     }
 
     getCategories(): Observable<Array<Category>> {
+        if (!this.categories.value.length) {
+            this.fetchCategories();
+        }
+        return this.categories.asObservable();
+    }
+
+    fetchCategories() {
         return this.rest.get(
             ApiEndPoint.GET.CATEGORIES
         ).pipe(
@@ -28,6 +35,10 @@ export class CategoryService {
                     }
                 );
             })
+        ).subscribe(
+            (results) => {
+                this.categories.next(results);
+            }
         );
     }
 
