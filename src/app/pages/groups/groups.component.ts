@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Category } from '../../models/category.model';
+import { Group } from '../../models/group.model';
 import { GroupService } from '../../services/group/group.service';
 import { SettingsService } from '../../services/settings/settings.service';
 
@@ -10,7 +12,7 @@ import { SettingsService } from '../../services/settings/settings.service';
     styleUrls: ['./groups.component.css']
 })
 export class GroupsComponent implements OnInit {
-    groups$;
+    groups$: Observable<Array<Group>>;
     selectedFilters: Array<Category> = [];
     preference: Category;
     placeholderImg = './assets/img/placeholder.png';
@@ -23,6 +25,7 @@ export class GroupsComponent implements OnInit {
         this.groups$ = this.groupService.findGroups(this.getPreSetPref());
     }
 
+    /* TODO: prevent user from selecting category set as preference */
     addFilter(selected: Array<Category>) {
         this.selectedFilters.length = 0;
         this.selectedFilters.push(...selected);
